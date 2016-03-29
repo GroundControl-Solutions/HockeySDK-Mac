@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="docs/docs/Changelog.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/doc/Changelog</TokenIdentifier>
+			<Abstract type="html">## Version 3.2.1
+- [UPDATE] Some minor refactorings
+- [BUGFIX] Fix NSURLSession memory leak in Swift apps
+- [BUGFIX] Fix issue preventing attachment from being included when sending non-clean termination report
+- [IMPROVEMENT] Anonymize binary path in crash report
+- [IMPROVEMENT] Support escaping of additional characters (URL encoding)
+- [IMPROVEMENT] Support Bundle Identifiers which contain whitespaces</Abstract>
+			<DeclaredIn>Changelog-template.md</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+        
+        
+	</File>
+</Tokens>
