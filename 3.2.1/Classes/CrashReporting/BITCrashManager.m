@@ -1037,7 +1037,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
                 [description stringByReplacingOccurrencesOfString:@"]]>" withString:@"]]" @"]]><![CDATA[" @">" options:NSLiteralSearch range:NSMakeRange(0,description.length)]];
     
     BITHockeyLog(@"INFO: Sending crash reports:\n%@", crashXML);
-    [self sendCrashReportWithFilename:filename xml:crashXML attachment:attachment];
+    [self sendCrashReportWithFilename:filename xml:crashXML attachments:@[attachment]];
   } else {
     // we cannot do anything with this report, so delete it
     [self cleanCrashReportWithFilename:filename];
@@ -1047,7 +1047,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
 
 #pragma mark - Networking
 
-- (NSData *)postBodyWithXML:(NSString *)xml attachment:(BITHockeyAttachment *)attachment boundary:(NSString *)boundary {
+- (NSData *)postBodyWithXML:(NSString *)xml attachments:(NSArray<BITHockeyAttachment *> *)attachments boundary:(NSString *)boundary {
     NSMutableData *postBody =  [NSMutableData data];
     
     //  [postBody appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -1068,21 +1068,27 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
                                                    contentType:@"text/xml"
                                                       boundary:boundary
                                                       filename:@"crash.xml"]];
-    
-    if (attachment && attachment.hockeyAttachmentData) {
-        NSString *attachmentFilename = attachment.filename;
-        if (!attachmentFilename) {
-            attachmentFilename = @"Attachment_0";
-        }
-        [postBody appendData:[BITHockeyAppClient dataWithPostValue:attachment.hockeyAttachmentData
-                                                            forKey:@"attachment0"
-                                                       contentType:attachment.contentType
-                                                          boundary:boundary
-                                                          filename:attachmentFilename]];
-    }
-    
+	
+	NSUInteger attachCount = 0;
+	for (BITHockeyAttachment * attachment in attachments) {
+		
+		if (attachment.hockeyAttachmentData) {
+			NSString *attachmentFilename = attachment.filename;
+			if (!attachmentFilename) {
+				attachmentFilename = [NSString stringWithFormat:@"Attachment_%zu", attachCount];
+			}
+			[postBody appendData:[BITHockeyAppClient dataWithPostValue:attachment.hockeyAttachmentData
+																forKey:[NSString stringWithFormat:@"attachment%zu", attachCount]
+														   contentType:attachment.contentType
+															  boundary:boundary
+															  filename:attachmentFilename]];
+			
+			attachCount++;
+		}
+	}
+	
     [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
+	
     return postBody;
 }
 
@@ -1170,7 +1176,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
  *
  *	@param	xml	The XML data that needs to be send to the server
  */
-- (void)sendCrashReportWithFilename:(NSString *)filename xml:(NSString*)xml attachment:(BITHockeyAttachment *)attachment {
+- (void)sendCrashReportWithFilename:(NSString *)filename xml:(NSString*)xml attachments:(NSArray<BITHockeyAttachment *> *)attachments {
     BOOL sendingWithURLSession = NO;
     
     id nsurlsessionClass = NSClassFromString(@"NSURLSessionUploadTask");
@@ -1179,7 +1185,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
         __block NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
         
         NSURLRequest *request = [self requestWithBoundary:kBITHockeyAppClientBoundary];
-        NSData *data = [self postBodyWithXML:xml attachment:attachment boundary:kBITHockeyAppClientBoundary];
+        NSData *data = [self postBodyWithXML:xml attachments:attachments boundary:kBITHockeyAppClientBoundary];
         
         if (request && data) {
             __weak typeof (self) weakSelf = self;
@@ -1203,7 +1209,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
     if (!sendingWithURLSession) {
         NSMutableURLRequest *request = [self requestWithBoundary:kBITHockeyAppClientBoundary];
         
-        NSData *postBody = [self postBodyWithXML:xml attachment:attachment boundary:kBITHockeyAppClientBoundary];
+        NSData *postBody = [self postBodyWithXML:xml attachments:attachments boundary:kBITHockeyAppClientBoundary];
         [request setHTTPBody:postBody];
         
         __unsafe_unretained typeof(self) weakSelf = self;
