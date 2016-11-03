@@ -1037,7 +1037,12 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
                 [description stringByReplacingOccurrencesOfString:@"]]>" withString:@"]]" @"]]><![CDATA[" @">" options:NSLiteralSearch range:NSMakeRange(0,description.length)]];
     
     BITHockeyLog(@"INFO: Sending crash reports:\n%@", crashXML);
-    [self sendCrashReportWithFilename:filename xml:crashXML attachments:@[attachment]];
+    NSMutableArray<BITHockeyAttachment *>* attachments = [[NSMutableArray<BITHockeyAttachment *> alloc] init];
+	if(attachment)
+	{
+      [attachments addObject:attachment];
+    }
+    [self sendCrashReportWithFilename:filename xml:crashXML attachments:attachments];
   } else {
     // we cannot do anything with this report, so delete it
     [self cleanCrashReportWithFilename:filename];
