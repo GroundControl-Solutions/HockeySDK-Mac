@@ -8,6 +8,11 @@ add_custom_target(HockeyCommand
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         )
 
+add_custom_target(HockeyHeaders
+        COMMAND cmake -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/Latest/Product/HockeySDK.framework/Headers ${CMAKE_CURRENT_BINARY_DIR}/HockeySDK
+        )
+
 add_library(HockeySDK INTERFACE)
-add_dependencies(HockeySDK HockeyCommand)
-target_link_libraries(HockeySDK INTERFACE "-framework HockeySDK" "-F${CMAKE_CURRENT_SOURCE_DIR}/build/Release")
+target_include_directories(HockeySDK INTERFACE ${CMAKE_CURRENT_BINARY_DIR})
+add_dependencies(HockeySDK HockeyCommand HockeyHeaders)
+target_link_libraries(HockeySDK INTERFACE "-framework HockeySDK" "-F${CMAKE_CURRENT_SOURCE_DIR}/Latest/Support/build/Release")
