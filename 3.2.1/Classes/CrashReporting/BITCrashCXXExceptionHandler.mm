@@ -105,7 +105,7 @@ callthrough:
   if (__original__cxa_throw) {
     __original__cxa_throw(exception_object, tinfo, dest);
   } else {
-    abort();
+    __builtin_trap();
   }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
@@ -183,7 +183,7 @@ static void BITCrashUncaughtCXXTerminateHandler(void)
   if (_BITCrashOriginalTerminateHandler != nullptr) {
     _BITCrashOriginalTerminateHandler();
   } else {
-    abort();
+    __builtin_trap();
   }
 }
 
