@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B018F42687F1C7CE50CC7FCA7A39891301B78E0C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DE7DBE2671F2E1E0640D21714A5F961DCDF3A649" : 9223372036854775807,
+    "B018F42687F1C7CE50CC7FCA7A39891301B78E0C" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4C914520-ADA1-4269-A832-023799DE9AFF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DE7DBE2671F2E1E0640D21714A5F961DCDF3A649" : "",
+    "B018F42687F1C7CE50CC7FCA7A39891301B78E0C" : "HockeySDK-Mac\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HockeySDK",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "3.2.1\/Support\/HockeySDK.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:GroundControl-Solutions\/HockeySDK-Mac.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B018F42687F1C7CE50CC7FCA7A39891301B78E0C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:groundgame\/groundgame-client.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DE7DBE2671F2E1E0640D21714A5F961DCDF3A649"
+    }
+  ]
+}
