@@ -66,6 +66,24 @@
 NSString *const kHockeyErrorDomain = @"HockeyErrorDomain";
 
 
+@interface BITPLCrashReport (BITCrashManagerFilter)
+- (BOOL)hasCrashedThread;
+@end
+
+@implementation BITPLCrashReport (BITCrashManagerFilter)
+
+- (BOOL)hasCrashedThread
+{
+	for (BITPLCrashReportThreadInfo * thread in self.threads) {
+		if (thread.crashed) {
+			return YES;
+		}
+	}
+	return NO;
+}
+
+@end
+
 static BITCrashManagerCallbacks bitCrashCallbacks = {
   .context = NULL,
   .handleSignal = NULL
@@ -614,6 +632,8 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
 
       if (report == nil) {
         BITHockeyLog(@"WARNING: Could not parse crash report");
+	  } else if (report.hasCrashedThread == NO) {
+        BITHockeyLog(@"WARNING: Skipping crash report '%@' because there is no crashed thread", cacheFilename);
       } else {
         NSDate *appStartTime = nil;
         NSDate *appCrashTime = nil;
