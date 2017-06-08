@@ -52,6 +52,10 @@ static BITCrashUncaughtCXXExceptionHandlerList _BITCrashUncaughtExceptionHandler
 static OSSpinLock _BITCrashCXXExceptionHandlingLock = OS_SPINLOCK_INIT;
 static pthread_key_t _BITCrashCXXExceptionInfoTSDKey = 0;
 
+#ifndef LIBCXXABI_NORETURN
+#define LIBCXXABI_NORETURN __attribute__((noreturn))
+#endif
+
 @implementation BITCrashUncaughtCXXExceptionHandlerManager
 
 extern "C" void LIBCXXABI_NORETURN __cxa_throw(void *exception_object, std::type_info *tinfo, void (*dest)(void *))
