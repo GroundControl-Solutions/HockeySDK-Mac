@@ -17,7 +17,7 @@
                BlueprintIdentifier = "1E7FB95C17D3F36B00B7E10D"
                BuildableName = "HockeySDK Documentation"
                BlueprintName = "HockeySDK Documentation"
-               ReferencedContainer = "container:../../Latest/Support/HockeySDK.xcodeproj">
+               ReferencedContainer = "container:HockeySDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -36,6 +37,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -48,7 +50,7 @@
             BlueprintIdentifier = "1E7FB95C17D3F36B00B7E10D"
             BuildableName = "HockeySDK Documentation"
             BlueprintName = "HockeySDK Documentation"
-            ReferencedContainer = "container:../../Latest/Support/HockeySDK.xcodeproj">
+            ReferencedContainer = "container:HockeySDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
