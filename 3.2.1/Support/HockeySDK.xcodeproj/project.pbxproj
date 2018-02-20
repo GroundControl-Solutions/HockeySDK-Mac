@@ -764,12 +764,12 @@
 			};
 			name = Debug;
 		};
-		1E3B4F6D1996796B00203B89 /* Release */ = {
+		1E3B4F6D1996796B00203B89 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = Release;
+			name = RelWithDebInfo;
 		};
 		1E7FB95D17D3F36B00B7E10D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -778,12 +778,12 @@
 			};
 			name = Debug;
 		};
-		1E7FB95E17D3F36B00B7E10D /* Release */ = {
+		1E7FB95E17D3F36B00B7E10D /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
-			name = Release;
+			name = RelWithDebInfo;
 		};
 		1EF09D9F1523574200067A5C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -834,7 +834,7 @@
 			};
 			name = Debug;
 		};
-		1EF09DA01523574200067A5C /* Release */ = {
+		1EF09DA01523574200067A5C /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E7FB96217D3F45200B7E10D /* buildnumber.xcconfig */;
 			buildSettings = {
@@ -873,7 +873,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
-			name = Release;
+			name = RelWithDebInfo;
 		};
 		1EF09DA21523574200067A5C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -903,7 +903,7 @@
 			};
 			name = Debug;
 		};
-		1EF09DA31523574200067A5C /* Release */ = {
+		1EF09DA31523574200067A5C /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -929,7 +929,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = framework;
 			};
-			name = Release;
+			name = RelWithDebInfo;
 		};
 /* End XCBuildConfiguration section */
 
@@ -938,37 +938,37 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E3B4F6C1996796B00203B89 /* Debug */,
-				1E3B4F6D1996796B00203B89 /* Release */,
+				1E3B4F6D1996796B00203B89 /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RelWithDebInfo;
 		};
 		1E7FB95F17D3F36B00B7E10D /* Build configuration list for PBXAggregateTarget "HockeySDK Documentation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E7FB95D17D3F36B00B7E10D /* Debug */,
-				1E7FB95E17D3F36B00B7E10D /* Release */,
+				1E7FB95E17D3F36B00B7E10D /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RelWithDebInfo;
 		};
 		1EF09D851523574200067A5C /* Build configuration list for PBXProject "HockeySDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1EF09D9F1523574200067A5C /* Debug */,
-				1EF09DA01523574200067A5C /* Release */,
+				1EF09DA01523574200067A5C /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RelWithDebInfo;
 		};
 		1EF09DA11523574200067A5C /* Build configuration list for PBXNativeTarget "HockeySDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1EF09DA21523574200067A5C /* Debug */,
-				1EF09DA31523574200067A5C /* Release */,
+				1EF09DA31523574200067A5C /* RelWithDebInfo */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = RelWithDebInfo;
 		};
 /* End XCConfigurationList section */
 	};
