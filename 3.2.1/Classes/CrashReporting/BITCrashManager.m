@@ -1139,7 +1139,7 @@ static void uncaught_cxx_exception_handler(const BITCrashUncaughtCXXExceptionInf
     __block NSError *theError = error;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        _sendingInProgress = NO;
+        self->_sendingInProgress = NO;
         
         if (nil == theError) {
             if (nil == responseData || [responseData length] == 0) {

@@ -650,7 +650,7 @@
                 [message addAttachmentsObject:newAttachment];
               }
               
-              [_feedbackList addObject:message];
+              [self->_feedbackList addObject:message];
               
               newMessage = YES;
             }
