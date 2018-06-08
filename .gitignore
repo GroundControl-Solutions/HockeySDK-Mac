@@ -4,3 +4,4 @@
 **/*.xcodeproj/*.pbxuser
 **/.idea/
 build/
+.DS_Store
