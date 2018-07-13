@@ -249,7 +249,7 @@ static BOOL _logsErrors;
 	if (returnStatus != noErr || !item)
 	{
 		if (_logsErrors)
-			NSLog(@"Error (%@) - %s", NSStringFromSelector(_cmd), GetMacOSStatusErrorString(returnStatus));
+			NSLog(@"Error (%@) - %@", NSStringFromSelector(_cmd), CFBridgingRelease(SecCopyErrorMessageString(returnStatus, NULL)));
 
         if (password) SecKeychainItemFreeContent(NULL, password);
 		return nil;
@@ -277,7 +277,7 @@ static BOOL _logsErrors;
 	if (returnStatus != noErr || !item)
 	{
 		if (_logsErrors)
-			NSLog(@"Error (%@) - %s", NSStringFromSelector(_cmd), GetMacOSStatusErrorString(returnStatus));
+			NSLog(@"Error (%@) - %@", NSStringFromSelector(_cmd), CFBridgingRelease(SecCopyErrorMessageString(returnStatus, NULL)));
 		return nil;
 	}
 	return [BITGenericKeychainItem _genericKeychainItemWithCoreKeychainItem:item forServiceName:serviceName username:username password:password];

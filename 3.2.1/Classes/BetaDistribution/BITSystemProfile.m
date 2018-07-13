@@ -65,16 +65,33 @@
 }
 
 + (NSString *)systemVersionString {
-	NSString* version = nil;
-  
-	SInt32 major, minor, bugfix;
-	OSErr err1 = Gestalt(gestaltSystemVersionMajor, &major);
-	OSErr err2 = Gestalt(gestaltSystemVersionMinor, &minor);
-	OSErr err3 = Gestalt(gestaltSystemVersionBugFix, &bugfix);
-	if ((!err1) && (!err2) && (!err3)) {
-		version = [NSString stringWithFormat:@"%ld.%ld.%ld", (long)major, (long)minor, (long)bugfix];
-	}
-  
+	__block NSString* version = nil;
+
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+#if __MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_8
+		if (@available(macOS 10.10, *)) {
+			NSOperatingSystemVersion operatingSystemVersion = [[NSProcessInfo processInfo] operatingSystemVersion];
+			version = [NSString stringWithFormat:@"%ld.%ld.%ld", (long)operatingSystemVersion.majorVersion, (long)operatingSystemVersion.minorVersion, (long)operatingSystemVersion.patchVersion];
+		}
+		else {
+			NSDictionary * systemInfoDict = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
+			id productVersionVal = systemInfoDict[@"ProductVersion"];
+			if ([productVersionVal isKindOfClass:[NSString class]]) {
+				version = productVersionVal;
+			}
+		}
+#else
+		SInt32 major, minor, bugfix;
+		OSErr err1 = Gestalt(gestaltSystemVersionMajor, &major);
+		OSErr err2 = Gestalt(gestaltSystemVersionMinor, &minor);
+		OSErr err3 = Gestalt(gestaltSystemVersionBugFix, &bugfix);
+		if ((!err1) && (!err2) && (!err3)) {
+			version = [NSString stringWithFormat:@"%ld.%ld.%ld", (long)major, (long)minor, (long)bugfix];
+		}
+#endif
+	});
+
 	return version;
 }
 
